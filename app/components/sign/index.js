@@ -5,8 +5,14 @@ import {
   TextInput,
   Button,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 class SignScreen extends Component {
+
+  static propTypes = {
+    buttonTitle: PropTypes.string.isRequired,
+    onButtonPress: PropTypes.func,
+  }
 
   constructor(props) {
     super(props);
