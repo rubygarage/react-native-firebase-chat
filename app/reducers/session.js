@@ -11,18 +11,19 @@ export default function session(state = initialState, action) {
     case types.SESSION_LOADING:
       return Object.assign({}, state, {
         loading: true,
+        error: null,
       });
     case types.SESSION_SUCCESS:
       return Object.assign({}, state, {
         loading: false,
-        user: null,
+        user: action.user,
         error: null
       });
     case types.SESSION_ERROR:
       return Object.assign({}, state, {
         loading: false,
         user: null,
-        error: null
+        error: action.error,
       });
     case types.LOGOUT:
       return initialState;

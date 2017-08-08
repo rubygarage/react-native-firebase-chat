@@ -7,6 +7,7 @@
 		"test": "jest"
 	},
 	"dependencies": {
+		"firebase": "^4.2.0",
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.47.1",
 		"react-native-tab-view": "0.0.69",

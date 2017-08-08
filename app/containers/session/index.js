@@ -5,6 +5,7 @@ import {
   View,
   StatusBar,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -12,19 +13,19 @@ import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 
 import { signupUser, loginUser } from '../../actions/sessionActions';
 
-import LoginScreen from '../../components/login';
-import SignUpScreen from '../../components/signup';
+import SignScreen from '../../components/sign';
 
 const mapStateToProps = (state) => {
   return {
     loading: state.default.session.loading,
+    error: state.default.session.error,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (username, password) => dispatch(loginUser(username, password)),
-    signup: (username, password) => dispatch(signupUser(username, password)),
+    login: (email, password) => dispatch(loginUser(email, password)),
+    signup: (email, password) => dispatch(signupUser(email, password)),
   };
 };
 
@@ -43,8 +44,8 @@ class SessionTabs extends Component {
   _renderHeader = props => <TabBar style={styles.tabBar} {...props} />;
 
   _renderScene = SceneMap({
-    '1': () => <LoginScreen onLoginPress={this.props.login} />,
-    '2': () => <SignUpScreen />,
+    '1': () => <SignScreen onButtonPress={this.props.login} buttonTitle="Login" />,
+    '2': () => <SignScreen onButtonPress={this.props.signup} buttonTitle="Sign Up" />,
   });
 
   _activityIndicator = () => {
@@ -58,10 +59,17 @@ class SessionTabs extends Component {
     return null;
   };
 
+  componentDidUpdate(prevProps) {
+    if (!prevProps.error && this.props.error) {
+      Alert.alert('Error', this.props.error);
+    }
+  }
+
   render() {
     return (
       <View
         style={styles.container}>
+
         <StatusBar
           backgroundColor={styles.statusBar.backgroundColor}
         />
