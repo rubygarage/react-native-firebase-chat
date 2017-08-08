@@ -6,11 +6,15 @@ import {
   Button,
 } from 'react-native';
 
-class LoginScreen extends Component {
+class SignScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { username: '', password: '' };
+
+    this.state = {
+      email: '',
+      password: '',
+    };
   }
 
   render() {
@@ -20,10 +24,12 @@ class LoginScreen extends Component {
 
         <TextInput
           style={styles.textInput}
-          placeholder='Username'
+          placeholder='Email'
           returnKeyType='next'
-          onChangeText={(text) => this.setState({username: text})}
-          value={this.state.username} />
+          keyboardType='email-address'
+          autoCapitalize='none'
+          onChangeText={(text) => this.setState({email: text})}
+          value={this.state.email} />
 
         <TextInput
           style={styles.textInput}
@@ -34,8 +40,8 @@ class LoginScreen extends Component {
           value={this.state.password} />
 
         <Button
-          title="Login"
-          onPress={() => this.props.onLoginPress(this.state.username, this.state.password)} />
+          title={this.props.buttonTitle}
+          onPress={() => this.props.onButtonPress(this.state.email, this.state.password)} />
 
       </View>
     );
@@ -56,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default SignScreen;

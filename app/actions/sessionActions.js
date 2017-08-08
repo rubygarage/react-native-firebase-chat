@@ -1,24 +1,53 @@
+'use strict';
+
 import * as types from './actionTypes';
+import FirebaseService from '../services/firebase';
 
-export function loginUser(username, password) {
+export function loginUser(email, password) {
   return (dispatch) => {
-    dispatch(sessionLoading())
+    dispatch(sessionLoading());
 
-    setTimeout(() => {
-      // Yay! Can invoke sync or async actions with `dispatch`
-      dispatch(sessionSuccess(null));
-    }, 3000);
+    let firebaseService = new FirebaseService();
+    firebaseService.app.auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(function(error) {
+        dispatch(sessionError(error.message));
+      });
+
+    let unsubscribe = firebaseService.app.auth()
+      .onAuthStateChanged(function(user) {
+        if (user) {
+          dispatch(sessionSuccess(user));
+          unsubscribe();
+        } else {
+          dispatch(sessionLogout());
+          unsubscribe();
+        }
+      });
   }
 }
 
-export function signupUser(username, password) {
+export function signupUser(email, password) {
   return (dispatch) => {
-    dispatch(sessionLoading())
+    dispatch(sessionLoading());
 
-    setTimeout(() => {
-      // Yay! Can invoke sync or async actions with `dispatch`
-      dispatch(sessionSuccess(null));
-    }, 3000);
+    let firebaseService = new FirebaseService();
+    firebaseService.app.auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch(function(error) {
+        dispatch(sessionError(error.message));
+      });
+
+    let unsubscribe = firebaseService.app.auth()
+      .onAuthStateChanged(function(user) {
+        if (user) {
+          dispatch(sessionSuccess(user));
+          unsubscribe();
+        } else {
+          dispatch(sessionLogout());
+          unsubscribe();
+        }
+      });
   }
 }
 
@@ -39,5 +68,11 @@ export function sessionError(error) {
   return {
     type: types.SESSION_ERROR,
     error,
+  }
+}
+
+export function sessionLogout() {
+  return {
+    type: types.SESSION_LOGOUT,
   }
 }

@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
-
+import { connect } from 'react-redux';
 
 import SessionTabs from './containers/session'
+import Dashboard from './containers/dashboard'
+
+const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.default.session.user != null,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
 
 class ChatApp extends Component {
 
@@ -11,8 +21,14 @@ class ChatApp extends Component {
   }
 
   render() {
-    return <SessionTabs />;
+    console.log(this.props);
+    
+    if (this.props.isLoggedIn) {
+      return <Dashboard />;
+    } else {
+      return <SessionTabs />;
+    }
   }
 }
 
-export default ChatApp;
+export default connect(mapStateToProps, mapDispatchToProps)(ChatApp);
