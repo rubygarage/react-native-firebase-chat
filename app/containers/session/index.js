@@ -17,8 +17,8 @@ import SignScreen from '../../components/sign';
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.default.session.loading,
-    error: state.default.session.error,
+    loading: state.session.loading,
+    error: state.session.error,
   };
 };
 

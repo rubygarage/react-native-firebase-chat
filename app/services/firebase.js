@@ -3,8 +3,7 @@ import { firebaseConfig } from '../configs/firebase';
 
 let instance = null;
 
-export default class FirebaseService {
-
+class FirebaseService {
   constructor() {
     if (!instance) {
       this.app = firebase.initializeApp(firebaseConfig);
@@ -13,3 +12,5 @@ export default class FirebaseService {
     return instance;
   }
 }
+
+export default firebaseService = new FirebaseService().app;

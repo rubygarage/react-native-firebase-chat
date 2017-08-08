@@ -1,20 +1,36 @@
 'use strict';
 
 import * as types from './actionTypes';
-import FirebaseService from '../services/firebase';
+import firebaseService from '../services/firebase';
+
+export function restoreSession() {
+  return (dispatch) => {
+    dispatch(sessionRestoring());
+
+    let unsubscribe = firebaseService.auth()
+      .onAuthStateChanged(function(user) {
+        if (user) {
+          dispatch(sessionSuccess(user));
+          unsubscribe();
+        } else {
+          dispatch(sessionLogout());
+          unsubscribe();
+        }
+      });
+  }
+}
 
 export function loginUser(email, password) {
   return (dispatch) => {
     dispatch(sessionLoading());
 
-    let firebaseService = new FirebaseService();
-    firebaseService.app.auth()
+    firebaseService.auth()
       .signInWithEmailAndPassword(email, password)
       .catch(function(error) {
         dispatch(sessionError(error.message));
       });
 
-    let unsubscribe = firebaseService.app.auth()
+    let unsubscribe = firebaseService.auth()
       .onAuthStateChanged(function(user) {
         if (user) {
           dispatch(sessionSuccess(user));
@@ -31,14 +47,13 @@ export function signupUser(email, password) {
   return (dispatch) => {
     dispatch(sessionLoading());
 
-    let firebaseService = new FirebaseService();
-    firebaseService.app.auth()
+    firebaseService.auth()
       .createUserWithEmailAndPassword(email, password)
       .catch(function(error) {
         dispatch(sessionError(error.message));
       });
 
-    let unsubscribe = firebaseService.app.auth()
+    let unsubscribe = firebaseService.auth()
       .onAuthStateChanged(function(user) {
         if (user) {
           dispatch(sessionSuccess(user));
@@ -48,6 +63,12 @@ export function signupUser(email, password) {
           unsubscribe();
         }
       });
+  }
+}
+
+export function sessionRestoring() {
+  return {
+    type: types.SESSION_RESTORING,
   }
 }
 
