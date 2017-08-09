@@ -30,7 +30,7 @@ class ChatApp extends Component {
 
   render() {
     if (this.props.restoring) {
-      return <ActivityIndicator style={{flex: 1, justifyContent:'center',}} />;
+      return <ActivityIndicator style={{flex: 1, justifyContent:'center', alignItems: 'center',}} />;
     } else {
       if (this.props.isLoggedIn) {
         return <Dashboard />;
