@@ -16,6 +16,7 @@ export default function session(state = initialState, action) {
       });
     case types.SESSION_LOADING:
       return Object.assign({}, state, {
+        restoring: false,
         loading: true,
         error: null,
       });
@@ -33,7 +34,7 @@ export default function session(state = initialState, action) {
         user: null,
         error: action.error,
       });
-    case types.LOGOUT:
+    case types.SESSION_LOGOUT:
       return initialState;
     default:
       return state;
