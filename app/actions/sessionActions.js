@@ -35,9 +35,6 @@ export function loginUser(email, password) {
         if (user) {
           dispatch(sessionSuccess(user));
           unsubscribe();
-        } else {
-          dispatch(sessionLogout());
-          unsubscribe();
         }
       });
   }
@@ -58,41 +55,38 @@ export function signupUser(email, password) {
         if (user) {
           dispatch(sessionSuccess(user));
           unsubscribe();
-        } else {
-          dispatch(sessionLogout());
-          unsubscribe();
         }
       });
   }
 }
 
-export function sessionRestoring() {
+function sessionRestoring() {
   return {
     type: types.SESSION_RESTORING,
   }
 }
 
-export function sessionLoading() {
+function sessionLoading() {
   return {
     type: types.SESSION_LOADING,
   }
 }
 
-export function sessionSuccess(user) {
+function sessionSuccess(user) {
   return {
     type: types.SESSION_SUCCESS,
     user,
   }
 }
 
-export function sessionError(error) {
+function sessionError(error) {
   return {
     type: types.SESSION_ERROR,
     error,
   }
 }
 
-export function sessionLogout() {
+function sessionLogout() {
   return {
     type: types.SESSION_LOGOUT,
   }
