@@ -14,14 +14,12 @@ class SignUpFormComponent extends Component {
   render() {
     return <BasicForm
         buttonTitle='Sign Up'
-        onButtonPress={this.props.screenProps.signup} />;
+        onButtonPress={this.props.signup} />;
   }
 }
 
 SignUpFormComponent.propTypes = {
-  screenProps: PropTypes.shape({
-    signup: PropTypes.func.isRequired,
-  }),
+  signup: PropTypes.func.isRequired,
 };
 
 export default SignUpFormComponent;
