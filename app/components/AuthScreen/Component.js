@@ -50,8 +50,7 @@ class AuthScreenComponent extends Component {
       <View
         style={styles.container}>
 
-        <AuthTabs
-          screenProps={{ login: this.props.login, signup: this.props.signup }} />
+        <AuthTabs />
 
         {this._activityIndicator()}
 
@@ -63,9 +62,6 @@ class AuthScreenComponent extends Component {
 AuthScreenComponent.propTypes = {
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
-
-  login: PropTypes.func.isRequired,
-  signup: PropTypes.func.isRequired,
 };
 
 export default AuthScreenComponent;

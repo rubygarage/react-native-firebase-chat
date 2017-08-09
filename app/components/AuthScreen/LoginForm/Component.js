@@ -14,14 +14,12 @@ class LoginFormComponent extends Component {
   render() {
     return <BasicForm
         buttonTitle='Login'
-        onButtonPress={this.props.screenProps.login} />;
+        onButtonPress={this.props.login} />;
   }
 }
 
 LoginFormComponent.propTypes = {
-  screenProps: PropTypes.shape({
-    login: PropTypes.func.isRequired,
-  }),
+  login: PropTypes.func.isRequired,
 };
 
 export default LoginFormComponent;

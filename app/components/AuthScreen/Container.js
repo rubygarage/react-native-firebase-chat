@@ -4,8 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { signupUser, loginUser } from '../../actions/sessionActions';
-
 import AuthScreenComponent from './Component';
 
 class AuthScreenContainer extends Component {
@@ -13,9 +11,7 @@ class AuthScreenContainer extends Component {
     return (
       <AuthScreenComponent
         loading={this.props.loading}
-        error={this.props.error}
-        login={this.props.login}
-        signup={this.props.signup} />
+        error={this.props.error} />
     );
   }
 }
@@ -27,11 +23,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    login: (email, password) => dispatch(loginUser(email, password)),
-    signup: (email, password) => dispatch(signupUser(email, password)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AuthScreenContainer);
+export default connect(mapStateToProps)(AuthScreenContainer);
