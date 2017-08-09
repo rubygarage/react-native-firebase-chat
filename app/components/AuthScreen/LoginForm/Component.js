@@ -6,15 +6,20 @@ import PropTypes from 'prop-types';
 import BasicForm from '../BasicForm';
 
 class LoginFormComponent extends Component {
+
+  static navigationOptions = {
+    tabBarLabel: 'Login',
+  };
+
   render() {
     return <BasicForm
-        buttonTitle="Login"
-        onButtonPress={this.props.onButtonPress} />;
+        buttonTitle='Login'
+        onButtonPress={this.props.login} />;
   }
 }
 
 LoginFormComponent.propTypes = {
-  onButtonPress: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
 export default LoginFormComponent;
