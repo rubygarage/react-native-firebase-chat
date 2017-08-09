@@ -1,26 +1,20 @@
+'use strict';
+
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   View,
   TextInput,
   Button,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-class SignScreen extends Component {
+import styles from './Styles';
 
-  static propTypes = {
-    buttonTitle: PropTypes.string.isRequired,
-    onButtonPress: PropTypes.func,
-  }
+class BasicFormComponent extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      email: '',
-      password: '',
-    };
+    this.state = { email: '', password: '', };
   }
 
   render() {
@@ -54,18 +48,9 @@ class SignScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'stretch',
-    justifyContent:'center',
-    backgroundColor: '#F5FCFF',
-  },
-  textInput: {
-    backgroundColor: '#FFFFFF',
-    height: 40,
-    margin: 10,
-  },
-});
+BasicFormComponent.propTypes = {
+  buttonTitle: PropTypes.string.isRequired,
+  onButtonPress: PropTypes.func.isRequired,
+};
 
-export default SignScreen;
+export default BasicFormComponent;

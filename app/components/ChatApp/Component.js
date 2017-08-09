@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 
 import { ActivityIndicator } from 'react-native';
 
-import Dashboard from '../../containers/dashboard';
-import SessionTabs from '../../containers/session';
+import DashboardScreen from '../DashboardScreen';
+import AuthScreen from '../AuthScreen';
 
 import styles from './Styles';
 
@@ -16,9 +16,9 @@ class ChatAppComponent extends Component {
       return <ActivityIndicator style={styles.activityIndicator} />;
     } else {
       if (this.props.logged) {
-        return <Dashboard />;
+        return <DashboardScreen />;
       } else {
-        return <SessionTabs />;
+        return <AuthScreen />;
       }
     }
   }
