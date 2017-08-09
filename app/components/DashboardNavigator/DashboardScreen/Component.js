@@ -29,7 +29,17 @@ import styles from './Styles';
 //   };
 // };
 
+// import { StackNavigator } from 'react-navigation';
+
+// const SimpleApp = StackNavigator({
+//   Dashboard: { screen: DashboardScreenComponent },
+// });
+
 class DashboardScreenComponent extends Component {
+
+  static navigationOptions = {
+    title: 'Dashboard',
+  };
 
   render() {
     return (
