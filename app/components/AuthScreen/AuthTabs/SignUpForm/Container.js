@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { signupUser } from '../../../actions/sessionActions';
+import { signupUser } from '../../../../actions/sessionActions';
 
 import SignUpFormComponent from './Component';
 

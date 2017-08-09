@@ -1,30 +1,16 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { TabNavigator } from 'react-navigation';
 import PropTypes from 'prop-types';
 import {
   View,
-  StatusBar,
   ActivityIndicator,
   Alert,
 } from 'react-native';
 
-import LoginForm from './LoginForm';
-import SignUpForm from './SignUpForm';
+import AuthTabs from './AuthTabs';
 
 import styles from './Styles';
-
-const routeConfigs = {
-  Login: {
-    screen: LoginForm,
-  },
-  SignUp: {
-    screen: SignUpForm,
-  },
-};
-
-const AuthTabs = TabNavigator(routeConfigs);
 
 class AuthScreenComponent extends Component {
 
