@@ -21,8 +21,6 @@ class AuthScreenContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
-  
   return {
     loading: state.session.loading,
     error: state.session.error,

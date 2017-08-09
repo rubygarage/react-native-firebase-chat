@@ -1,45 +1,32 @@
 'use strict';
 
 import React, { Component } from 'react';
+import { TabNavigator } from 'react-navigation';
 import PropTypes from 'prop-types';
 import {
-  StyleSheet,
-  Text,
   View,
   StatusBar,
   ActivityIndicator,
   Alert,
 } from 'react-native';
 
-import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
-
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
 import styles from './Styles';
 
+const routeConfigs = {
+  Login: {
+    screen: LoginForm,
+  },
+  SignUp: {
+    screen: SignUpForm,
+  },
+};
+
+const AuthTabs = TabNavigator(routeConfigs);
+
 class AuthScreenComponent extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      index: 0,
-      routes: [
-        { key: '1', title: 'Login' },
-        { key: '2', title: 'Sign Up' },
-      ],
-    };
-  }
-
-  _handleIndexChange = index => this.setState({ index });
-
-  _renderHeader = props => <TabBar style={styles.tabBar} {...props} />;
-
-  _renderScene = SceneMap({
-    '1': () => <LoginForm onButtonPress={this.props.login} />,
-    '2': () => <SignUpForm onButtonPress={this.props.signup} />,
-  });
 
   _activityIndicator = () => {
     if (this.props.loading) {
@@ -63,14 +50,8 @@ class AuthScreenComponent extends Component {
       <View
         style={styles.container}>
 
-        <StatusBar
-          backgroundColor={styles.statusBar.backgroundColor} />
-
-        <TabViewAnimated
-          navigationState={this.state}
-          renderScene={this._renderScene}
-          renderHeader={this._renderHeader}
-          onIndexChange={this._handleIndexChange} />
+        <AuthTabs
+          screenProps={{ login: this.props.login, signup: this.props.signup }} />
 
         {this._activityIndicator()}
 
