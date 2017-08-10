@@ -4,6 +4,8 @@ import {
   View,
 } from 'react-native';
 
+import translations from '../../../i18n';
+
 import styles from './Styles';
 
 // import { connect } from 'react-redux';
@@ -42,7 +44,7 @@ class ChatScreenComponent extends Component {
       <View
         style={styles.container}>
 
-        <Text>Chat</Text>
+        <Text>{translations.t('chat')}</Text>
 
       </View>
     );

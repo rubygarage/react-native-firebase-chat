@@ -8,7 +8,14 @@ import { signupUser } from '../../../../actions/sessionActions';
 
 import SignUpFormComponent from './Component';
 
+import translations from '../../../../i18n';
+
 class SignUpFormContainer extends Component {
+
+  static navigationOptions = {
+    tabBarLabel: translations.t('signup'),
+  };
+
   render() {
     return (
       <SignUpFormComponent

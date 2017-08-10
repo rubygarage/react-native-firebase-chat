@@ -1,6 +1,7 @@
 package com.chat;
 
 import com.facebook.react.ReactActivity;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 
 public class MainActivity extends ReactActivity {
 

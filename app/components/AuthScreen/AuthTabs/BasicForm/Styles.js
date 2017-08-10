@@ -7,10 +7,9 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
     justifyContent:'center',
-    backgroundColor: '#F5FCFF',
   },
   textInput: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#eeeeee',
     height: 40,
     margin: 10,
   },

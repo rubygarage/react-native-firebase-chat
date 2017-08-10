@@ -5,15 +5,13 @@ import PropTypes from 'prop-types';
 
 import BasicForm from '../BasicForm';
 
-class LoginFormComponent extends Component {
+import translations from '../../../../i18n';
 
-  static navigationOptions = {
-    tabBarLabel: 'Login',
-  };
+class LoginFormComponent extends Component {
 
   render() {
     return <BasicForm
-        buttonTitle='Login'
+        buttonTitle={translations.t('login')}
         onButtonPress={this.props.login} />;
   }
 }
