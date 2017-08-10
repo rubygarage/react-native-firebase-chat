@@ -33,7 +33,8 @@ class BasicFormComponent extends Component {
           keyboardType='email-address'
           autoCapitalize='none'
           onChangeText={(text) => this.setState({email: text})}
-          value={this.state.email} />
+          value={this.state.email}
+          underlineColorAndroid={'transparent'} />
 
         <TextInput
           style={styles.textInput}
@@ -41,7 +42,8 @@ class BasicFormComponent extends Component {
           secureTextEntry={true}
           returnKeyType='done'
           onChangeText={(text) => this.setState({password: text})}
-          value={this.state.password} />
+          value={this.state.password}
+          underlineColorAndroid={'transparent'} />
 
         <TouchableOpacity
           style={styles.button}
