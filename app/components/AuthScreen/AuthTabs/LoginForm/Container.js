@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Image } from 'react-native';
+
 import { connect } from 'react-redux';
 
 import { loginUser } from '../../../../actions/sessionActions';
@@ -14,6 +16,12 @@ class LoginFormContainer extends Component {
 
   static navigationOptions = {
     tabBarLabel: translations.t('login'),
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('../../../../images/ic_person_outline.png')}
+        style={{tintColor: tintColor}}
+      />
+    ),
   };
 
   render() {
