@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
+import translations from '../../../../i18n';
+
 import styles from './Styles';
 
 class BasicFormComponent extends Component {
@@ -24,7 +26,7 @@ class BasicFormComponent extends Component {
 
         <TextInput
           style={styles.textInput}
-          placeholder='Email'
+          placeholder={translations.t('email')}
           returnKeyType='next'
           keyboardType='email-address'
           autoCapitalize='none'
@@ -33,7 +35,7 @@ class BasicFormComponent extends Component {
 
         <TextInput
           style={styles.textInput}
-          placeholder='Password'
+          placeholder={translations.t('password')}
           secureTextEntry={true}
           returnKeyType='done'
           onChangeText={(text) => this.setState({password: text})}

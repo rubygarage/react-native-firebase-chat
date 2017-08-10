@@ -6,12 +6,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
-  statusBar: {
-    backgroundColor: '#ff0000',
-  },
-  tabBar: {
-    marginTop: 20,
-  },
   activityContainer: {
     display: 'flex',
     position: 'absolute',

@@ -8,7 +8,14 @@ import { loginUser } from '../../../../actions/sessionActions';
 
 import LoginFormComponent from './Component';
 
+import translations from '../../../../i18n';
+
 class LoginFormContainer extends Component {
+
+  static navigationOptions = {
+    tabBarLabel: translations.t('login'),
+  };
+
   render() {
     return (
       <LoginFormComponent
