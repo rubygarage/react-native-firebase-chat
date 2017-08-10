@@ -1,12 +1,14 @@
 'use strict';
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   TextInput,
   Button,
+  TouchableOpacity,
+  Text,
 } from 'react-native';
-import PropTypes from 'prop-types';
 
 import translations from '../../../../i18n';
 
@@ -31,7 +33,8 @@ class BasicFormComponent extends Component {
           keyboardType='email-address'
           autoCapitalize='none'
           onChangeText={(text) => this.setState({email: text})}
-          value={this.state.email} />
+          value={this.state.email}
+          underlineColorAndroid={'transparent'} />
 
         <TextInput
           style={styles.textInput}
@@ -39,11 +42,16 @@ class BasicFormComponent extends Component {
           secureTextEntry={true}
           returnKeyType='done'
           onChangeText={(text) => this.setState({password: text})}
-          value={this.state.password} />
+          value={this.state.password}
+          underlineColorAndroid={'transparent'} />
 
-        <Button
-          title={this.props.buttonTitle}
-          onPress={() => this.props.onButtonPress(this.state.email, this.state.password)} />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.props.onButtonPress(this.state.email, this.state.password)}>
+
+          <Text style={styles.buttonTitle}>{this.props.buttonTitle}</Text>
+
+        </TouchableOpacity>
 
       </View>
     );

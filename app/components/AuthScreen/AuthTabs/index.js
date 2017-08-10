@@ -15,4 +15,20 @@ const routeConfigs = {
   },
 };
 
-export default TabNavigator(routeConfigs);
+const tabBarOptions = {
+  tabBarOptions: {
+    activeTintColor: '#88cc88',
+    inactiveTintColor: '#aaaaaa',
+    showIcon: true,
+    scrollEnabled: false,
+    indicatorStyle: {
+      display: 'none',
+    },
+    style: {
+      backgroundColor: '#ffffff',
+    },
+  },
+  tabBarPosition: 'bottom'
+};
+
+export default TabNavigator(routeConfigs, tabBarOptions);
