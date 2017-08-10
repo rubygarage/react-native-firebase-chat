@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Image } from 'react-native';
+
 import { connect } from 'react-redux';
 
 import { signupUser } from '../../../../actions/sessionActions';
@@ -14,6 +16,12 @@ class SignUpFormContainer extends Component {
 
   static navigationOptions = {
     tabBarLabel: translations.t('signup'),
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('../../../../images/ic_person_add.png')}
+        style={{tintColor: tintColor}}
+      />
+    ),
   };
 
   render() {
