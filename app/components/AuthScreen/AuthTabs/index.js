@@ -15,4 +15,10 @@ const routeConfigs = {
   },
 };
 
-export default TabNavigator(routeConfigs);
+const tabBarOptions = {
+  tabBarOptions: {
+    activeTintColor: '#88cc88',
+  },
+};
+
+export default TabNavigator(routeConfigs, tabBarOptions);

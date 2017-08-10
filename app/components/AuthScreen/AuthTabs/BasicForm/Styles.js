@@ -9,8 +9,24 @@ export default StyleSheet.create({
     justifyContent:'center',
   },
   textInput: {
-    backgroundColor: '#eeeeee',
+    backgroundColor: '#ffffff',
     height: 40,
     margin: 10,
+    borderRadius: 5,
+    padding: 3,
   },
+  button: {
+    backgroundColor: '#88cc88',
+    height: 40,
+    margin: 10,
+    borderRadius: 5,
+    padding: 3,
+    alignItems: 'center',
+    justifyContent:'center',
+  },
+  buttonTitle: {
+    color: '#ffffff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  }
 });
