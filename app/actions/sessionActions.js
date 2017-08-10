@@ -60,6 +60,21 @@ export function signupUser(email, password) {
   }
 }
 
+export function logoutUser() {
+  return (dispatch) => {
+    dispatch(sessionLoading());
+
+    firebaseService.auth()
+      .signOut()
+      .then(function() {
+        dispatch(sessionLogout());
+      })
+      .catch(function(error) {
+        dispatch(sessionError(error.message));
+      });
+  }
+}
+
 function sessionRestoring() {
   return {
     type: types.SESSION_RESTORING,

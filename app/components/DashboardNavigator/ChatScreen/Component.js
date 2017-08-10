@@ -35,22 +35,18 @@ import styles from './Styles';
 //   Dashboard: { screen: DashboardScreenComponent },
 // });
 
-class DashboardScreenComponent extends Component {
-
-  static navigationOptions = {
-    title: 'Dashboard',
-  };
+class ChatScreenComponent extends Component {
 
   render() {
     return (
       <View
         style={styles.container}>
 
-        <Text>Dashboard</Text>
+        <Text>Chat</Text>
 
       </View>
     );
   }
 }
 
-export default DashboardScreenComponent;
+export default ChatScreenComponent;
