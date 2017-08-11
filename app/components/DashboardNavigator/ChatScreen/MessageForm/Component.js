@@ -10,6 +10,14 @@ import styles from './Styles';
 
 class MessageFormComponent extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      message: '',
+    };
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -18,8 +26,8 @@ class MessageFormComponent extends Component {
           style={styles.textInput}
           placeholder={translations.t('message')}
           returnKeyType='send'
-          onChangeText={(text) => this.setState({email: text})}
-          value={true}
+          onChangeText={(text) => this.setState({message: text})}
+          value={this.props.message}
           underlineColorAndroid={'transparent'} />
 
         <TouchableOpacity
