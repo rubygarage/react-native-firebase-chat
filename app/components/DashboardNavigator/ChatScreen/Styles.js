@@ -4,9 +4,15 @@ import React, { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent:'center',
-    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
     backgroundColor: '#eeeeee',
   },
+  list: {
+    flex: 1,
+  },
+  form: {
+    flexShrink: 0,
+  }
 });
