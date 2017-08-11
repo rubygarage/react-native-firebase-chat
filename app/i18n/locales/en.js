@@ -8,4 +8,5 @@ export default {
   password: 'Password',
 
   chat: 'Chat',
+  message: 'Message',
 };
