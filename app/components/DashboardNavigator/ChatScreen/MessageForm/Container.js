@@ -1,11 +1,9 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text } from 'react-native';
-
 import { connect } from 'react-redux';
 
-// import { logoutUser } from '../../../../actions/sessionActions';
+import { sendMessage } from '../../../../store/chat';
 
 import MessageForm from './Component';
 
@@ -13,15 +11,22 @@ class MessageFormContainer extends Component {
 
   render() {
     return (
-      <MessageForm />
+      <MessageForm
+        sending={this.props.sending}
+        sendMessage={this.props.sendMessage} />
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    logout: () => dispatch(logoutUser()),
+    sending: state.chat.sending,
+    sendingError: state.chat.sendingError,
   };
 };
 
-export default MessageFormContainer;
+const mapDispatchToProps = {
+  sendMessage,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageFormContainer);
