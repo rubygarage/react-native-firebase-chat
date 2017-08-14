@@ -1,5 +1,6 @@
+'use strict';
+
 import * as types from './actionTypes';
-import firebaseService from '../../services/firebase';
 
 const initialState = {
   restoring: false,
