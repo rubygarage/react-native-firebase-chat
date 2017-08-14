@@ -1,4 +1,5 @@
-// Login events
+'use strict';
+
 export const SESSION_RESTORING = 'SESSION_RESTORING';
 export const SESSION_LOADING = 'SESSION_LOADING';
 export const SESSION_SUCCESS = 'SESSION_SUCCESS';

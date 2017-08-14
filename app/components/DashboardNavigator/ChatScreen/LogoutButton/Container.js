@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { logoutUser } from '../../../../actions/sessionActions';
+import { logoutUser } from '../../../../store/session';
 
 import LogoutButton from './Component';
 

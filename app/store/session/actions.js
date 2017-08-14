@@ -1,7 +1,7 @@
 'use strict';
 
 import * as types from './actionTypes';
-import firebaseService from '../services/firebase';
+import firebaseService from '../../services/firebase';
 
 export function restoreSession() {
   return (dispatch) => {

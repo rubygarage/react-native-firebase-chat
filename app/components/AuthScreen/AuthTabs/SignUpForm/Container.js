@@ -6,7 +6,7 @@ import { Image } from 'react-native';
 
 import { connect } from 'react-redux';
 
-import { signupUser } from '../../../../actions/sessionActions';
+import { signupUser } from '../../../../store/session';
 
 import SignUpFormComponent from './Component';
 
