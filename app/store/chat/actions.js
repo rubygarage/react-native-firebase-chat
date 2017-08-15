@@ -8,34 +8,29 @@ export function sendMessage(message) {
     dispatch(chatMessageLoading());
 
     let currentUser = firebaseService.auth().currentUser;
-    //console.log(currentUser);
-    console.log(message);
+    let chatMessage = {
+      text: message,
+      time: Date.now(),
+      user: {
+        id: currentUser.uid,
+        name: currentUser.email
+      }
+    }
 
-    setTimeout(function() {
-      dispatch(chatMessageSuccess());
-    }, 3000);
+    // setTimeout(function() {
+    //   dispatch(chatMessageSuccess());
+    // }, 3000);
 
+    
 
-    // let chatMessage = {
-    //   message: message,
-    //   user: {
-    //     id:
-    //   },
-    //   date:
-    // };
-
-    // firebaseService.database().ref('chat').set
-
-    // let unsubscribe = firebaseService.auth()
-    //   .onAuthStateChanged(function(user) {
-    //     if (user) {
-    //       dispatch(sessionSuccess(user));
-    //       unsubscribe();
-    //     } else {
-    //       dispatch(sessionLogout());
-    //       unsubscribe();
-    //     }
-    //   });
+    let firebaseRef = firebaseService.database().ref("Messages");
+    firebaseRef.push().set(chatMessage, function(error) {
+      if (error) {
+        dispatch(chatMessageSuccess(error));
+      } else {
+        dispatch(chatMessageSuccess());
+      }
+    });
   }
 }
 
