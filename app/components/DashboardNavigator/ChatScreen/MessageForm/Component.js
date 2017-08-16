@@ -9,22 +9,13 @@ import translations from '../../../../i18n';
 import styles from './Styles';
 
 class MessageFormComponent extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      message: '',
-    };
-  }
-
   handleTextChange(text) {
-    this.setState({message: text});
+    this.props.updateMessage(text);
   }
 
   render() {
     const sending = this.props.sending;
-    const isButtonDisabled = sending || this.state.message.trim().length == 0;
+    const isButtonDisabled = sending || this.props.message.trim().length == 0;
 
     return (
       <View style={styles.container}>
@@ -40,7 +31,7 @@ class MessageFormComponent extends Component {
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.props.sendMessage(this.state.message)}
+            onPress={() => this.props.sendMessage(this.props.message)}
             disabled={isButtonDisabled}>
 
             <Image
