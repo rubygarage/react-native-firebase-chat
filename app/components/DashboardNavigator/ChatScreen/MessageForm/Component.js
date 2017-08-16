@@ -18,7 +18,7 @@ class MessageFormComponent extends Component {
 
   showAlertIfNeeded = () => {
     if (this.props.sendingError) {
-      Alert.alert('Alert', this.props.sendingError)
+      Alert.alert(translations.t('error'), this.props.sendingError)
     }
   }
 

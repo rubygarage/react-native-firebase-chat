@@ -9,15 +9,16 @@ const initialState = {
 };
 
 export default function session(state = initialState, action) {
+  console.log(action.type);
   switch(action.type) {
     case types.CHAT_MESSAGE_LOADING:
-      return { ...state, sending: true, };
+      return { ...state, sending: true, sendingError: null, };
     case types.CHAT_MESSAGE_ERROR:
       return { ...state, sending: false, sendingError: action.error, };
     case types.CHAT_MESSAGE_SUCCESS:
       return initialState;
     case types.CHAT_MESSAGE_UPDATE:
-      return { ...state, sending: false, message: action.text, }
+      return { ...state, sending: false, message: action.text, sendingError: null, }
     default:
       return state;
   }
