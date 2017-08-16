@@ -1,16 +1,25 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { View, TextInput, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
+import { View, TextInput, TouchableOpacity, Image, ActivityIndicator, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 
 import translations from '../../../../i18n';
 
 import styles from './Styles';
 
+const SEND_BUTTON_OPACITY_ENABLED = 1.0
+const SEND_BUTTON_OPACITY_DISABLED = 0.2
+
 class MessageFormComponent extends Component {
   handleTextChange(text) {
     this.props.updateMessage(text);
+  }
+
+  showAlertIfNeeded = () => {
+    if (this.props.sendingError) {
+      Alert.alert('Alert', this.props.sendingError)
+    }
   }
 
   render() {
@@ -36,10 +45,12 @@ class MessageFormComponent extends Component {
 
             <Image
               source={require('../../../../images/ic_send.png')}
-              style={{opacity: (isButtonDisabled ? 0.2 : 1.0)}} />
+              style={{opacity: (isButtonDisabled ? SEND_BUTTON_OPACITY_DISABLED : SEND_BUTTON_OPACITY_ENABLED)}} />
 
           </TouchableOpacity>
 
+          {this.showAlertIfNeeded()}
+          
       </View>
     );
   }
