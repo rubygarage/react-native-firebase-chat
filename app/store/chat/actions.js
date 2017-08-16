@@ -15,14 +15,14 @@ export function sendMessage(message) {
       time: Date.now(),
       user: {
         id: currentUser.uid,
-        name: currentUser.email
+        email: currentUser.email
       }
     }
 
     let firebaseRef = firebaseService.database().ref(FIREBASE_REF_MESSAGES);
     firebaseRef.push().set(chatMessage, function(error) {
       if (error) {
-        dispatch(chatMessageError(error));
+        dispatch(chatMessageError(error.message));
       } else {
         dispatch(chatMessageSuccess());
       }

@@ -10,6 +10,8 @@ import {
 
 import AuthTabs from './AuthTabs';
 
+import translations from '../../i18n';
+
 import styles from './Styles';
 
 class AuthScreenComponent extends Component {
@@ -27,7 +29,7 @@ class AuthScreenComponent extends Component {
 
   componentDidUpdate(prevProps) {
     if (!prevProps.error && this.props.error) {
-      Alert.alert('Error', this.props.error);
+      Alert.alert(translations.t('error'), this.props.error);
     }
   }
 
