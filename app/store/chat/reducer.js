@@ -5,6 +5,7 @@ import * as types from './actionTypes';
 const initialState = {
   sending: false,
   sendingError: null,
+  message: ''
 };
 
 export default function session(state = initialState, action) {
@@ -15,6 +16,8 @@ export default function session(state = initialState, action) {
       return { ...state, sending: false, sendingError: action.error, };
     case types.CHAT_MESSAGE_SUCCESS:
       return initialState;
+    case types.CHAT_MESSAGE_UPDATE:
+      return { ...state, sending: false, message: action.text, }
     default:
       return state;
   }
