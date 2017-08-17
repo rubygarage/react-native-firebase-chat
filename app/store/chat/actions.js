@@ -3,39 +3,35 @@
 import * as types from './actionTypes';
 import firebaseService from '../../services/firebase';
 
+const FIREBASE_REF_MESSAGES = 'Messages'
+
 export function sendMessage(message) {
   return (dispatch) => {
     dispatch(chatMessageLoading());
 
     let currentUser = firebaseService.auth().currentUser;
-    //console.log(currentUser);
-    console.log(message);
+    let chatMessage = {
+      text: message,
+      time: Date.now(),
+      user: {
+        id: currentUser.uid,
+        email: currentUser.email
+      }
+    }
 
-    setTimeout(function() {
-      dispatch(chatMessageSuccess());
-    }, 3000);
-
-
-    // let chatMessage = {
-    //   message: message,
-    //   user: {
-    //     id:
-    //   },
-    //   date:
-    // };
-
-    // firebaseService.database().ref('chat').set
-
-    // let unsubscribe = firebaseService.auth()
-    //   .onAuthStateChanged(function(user) {
-    //     if (user) {
-    //       dispatch(sessionSuccess(user));
-    //       unsubscribe();
-    //     } else {
-    //       dispatch(sessionLogout());
-    //       unsubscribe();
-    //     }
-    //   });
+    let firebaseRef = firebaseService.database().ref(FIREBASE_REF_MESSAGES);
+    firebaseRef.push().set(chatMessage, function(error) {
+      if (error) {
+        dispatch(chatMessageError(error.message));
+      } else {
+        dispatch(chatMessageSuccess());
+      }
+    });
+  }
+}
+export function updateMessage(text) {
+  return (dispatch) => {
+    dispatch(chatUpdateMessage(text));
   }
 }
 
@@ -55,5 +51,12 @@ function chatMessageError(error) {
   return {
     type: types.CHAT_MESSAGE_ERROR,
     error,
+  }
+}
+
+function chatUpdateMessage(text) {
+  return {
+    type: types.CHAT_MESSAGE_UPDATE,
+    text,
   }
 }

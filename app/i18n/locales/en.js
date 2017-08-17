@@ -9,4 +9,6 @@ export default {
 
   chat: 'Chat',
   message: 'Message',
+
+  error: 'Error'
 };

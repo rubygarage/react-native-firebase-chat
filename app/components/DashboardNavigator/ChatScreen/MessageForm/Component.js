@@ -1,30 +1,30 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { View, TextInput, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
+import { View, TextInput, TouchableOpacity, Image, ActivityIndicator, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 
 import translations from '../../../../i18n';
 
 import styles from './Styles';
 
+const SEND_BUTTON_OPACITY_ENABLED = 1.0
+const SEND_BUTTON_OPACITY_DISABLED = 0.2
+
 class MessageFormComponent extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      message: '',
-    };
+  handleTextChange(text) {
+    this.props.updateMessage(text);
   }
 
-  handleTextChange(text) {
-    this.setState({message: text});
+  showAlertIfNeeded = () => {
+    if (this.props.sendingError) {
+      Alert.alert(translations.t('error'), this.props.sendingError)
+    }
   }
 
   render() {
     const sending = this.props.sending;
-    const isButtonDisabled = sending || this.state.message.trim().length == 0;
+    const isButtonDisabled = sending || this.props.message.trim().length == 0;
 
     return (
       <View style={styles.container}>
@@ -40,15 +40,17 @@ class MessageFormComponent extends Component {
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.props.sendMessage(this.state.message)}
+            onPress={() => this.props.sendMessage(this.props.message)}
             disabled={isButtonDisabled}>
 
             <Image
               source={require('../../../../images/ic_send.png')}
-              style={{opacity: (isButtonDisabled ? 0.2 : 1.0)}} />
+              style={{opacity: (isButtonDisabled ? SEND_BUTTON_OPACITY_DISABLED : SEND_BUTTON_OPACITY_ENABLED)}} />
 
           </TouchableOpacity>
 
+          {this.showAlertIfNeeded()}
+          
       </View>
     );
   }
