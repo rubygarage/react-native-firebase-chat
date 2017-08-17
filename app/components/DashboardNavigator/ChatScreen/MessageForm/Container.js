@@ -3,8 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { sendMessage } from '../../../../store/chat';
-import { updateMessage } from '../../../../store/chat';
+import { sendMessage, updateMessage } from '../../../../store/chat';
 
 import MessageForm from './Component';
 
