@@ -1,27 +1,36 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { View, Text, ListView } from 'react-native';
+import { ListView, List, FlatList } from 'react-native';
 
 import styles from './Styles';
+
+import MessageRow from './MessageRow';
 
 class MessageListComponent extends Component {
     constructor(props) {
         super(props);
-    
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
-          dataSource: ds.cloneWithRows(['Row 1', 'Row 2', 'Row 3']),
+            data: [{ id: 1, text: '111' },
+                   { id: 2, text: '222' },
+                   { id: 3, text: '333' }]
         };
     }
 
     render() {
+        console.log(this.state.data);
         return (
-            <ListView 
-            style={styles.container}
-            dataSource={this.state.dataSource}
-            renderRow={(data) => <View><Text>{data}</Text></View>}/>
-          );
+            <FlatList
+                style={styles.container}
+                data={this.state.data}
+                keyExtractor={item => item.id}
+                renderItem={({ item }) => { 
+                    return <MessageRow message={item} />
+                }}
+            />
+        );
     }
 }
 

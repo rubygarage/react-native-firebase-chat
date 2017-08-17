@@ -7,7 +7,8 @@ import MessageListComponent from './Component';
 class MessagesListContainer extends Component {
     render() {
         return (
-          <MessageListComponent />);
+          <MessageListComponent />
+        );
       }
 }
 
