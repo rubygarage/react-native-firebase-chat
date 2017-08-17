@@ -12,11 +12,9 @@ class ChatScreenComponent extends Component {
       <View
         style={styles.container}>
 
-        <View
-          style={styles.list} />
-
-        <MessageForm
-          style={styles.form} />
+        <MessagesList />
+        
+        <MessageForm />
 
       </View>
     );

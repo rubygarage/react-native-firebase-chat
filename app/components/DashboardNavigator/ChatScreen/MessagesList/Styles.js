@@ -5,8 +5,9 @@ import React, { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     display: 'flex',
+    flex: 1,
     flexDirection: 'column',
-    height: '100%',
-    backgroundColor: '#eeeeee',
-  },
+    backgroundColor: 'red',
+    // backgroundColor: '#eeeeee',
+  }
 });
