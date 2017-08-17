@@ -4,9 +4,10 @@ import React, { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    display: 'flex',
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#eeeeee',
+    padding: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'blue'
   }
 });
