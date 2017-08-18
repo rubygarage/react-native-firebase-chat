@@ -45,31 +45,6 @@ export function loadMessages() {
   }
 }
 
-export function subscribeFirebaseChanges() {
-  return (dispatch) => {
-    FIREBASE_REF_MESSAGES.on("child_added", function(snapshot) {
-      var newPost = snapshot.val();
-      console.log('*** ADDED POST ***');
-    });
-
-    FIREBASE_REF_MESSAGES.on("child_changed", function(snapshot) {
-      var newPost = snapshot.val();
-      console.log('*** CHANGED POST ***');
-    });
-
-    FIREBASE_REF_MESSAGES.on("child_removed", function(snapshot) {
-      var newPost = snapshot.val();
-      console.log('*** REMOVED POST ***');
-    });
-  }
-}
-
-export function unsuscribeFirebaseChanges() {
-  return (dispatch) => {
-    FIREBASE_REF_MESSAGES.off();
-  }
-}
-
 function chatMessageLoading() {
   return {
     type: types.CHAT_MESSAGE_LOADING,

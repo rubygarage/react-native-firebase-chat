@@ -11,7 +11,6 @@ import { getChatItems } from '../../../../store/chat/selectors';
 class MessageListComponent extends Component {
     render() {
         const data = getChatItems(this.props.data)
-        console.log(data);
         return (
             <FlatList
                 style={styles.container}
