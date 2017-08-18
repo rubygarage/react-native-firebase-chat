@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  loadMessages
+  loadMessages,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesListContainer);
