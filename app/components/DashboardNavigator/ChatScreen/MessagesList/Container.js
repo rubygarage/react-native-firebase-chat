@@ -4,17 +4,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { subscribeFirebaseChanges, unsuscribeFirebaseChanges } from '../../../../store/chat/actions';
+import { loadMessages } from '../../../../store/chat/actions';
 
 import MessageListComponent from './Component';
 
 class MessagesListContainer extends Component {
-  componentDidMount() {
-    this.props.subscribeFirebaseChanges();
-  }
-
-  componentWillUnmount() {
-    this.props.unsuscribeFirebaseChanges();
+  constructor(props) {
+    super(props);
+    this.props.loadMessages();
   }
 
   render() {
@@ -33,8 +30,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  subscribeFirebaseChanges,
-  unsuscribeFirebaseChanges,
+  loadMessages
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesListContainer);
