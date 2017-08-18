@@ -8,7 +8,7 @@ import styles from './Styles';
 
 class ChatScreenComponent extends Component {
 
-  render() {
+  render() {    
     return (
       <KeyboardAvoidingView
         style={styles.container}

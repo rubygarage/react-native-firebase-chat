@@ -9,6 +9,7 @@ import MessageRow from './MessageRow';
 import { getChatItems } from '../../../../store/chat/selectors';
 
 class MessageListComponent extends Component {
+    
     render() {
         const data = getChatItems(this.props.data)
         return (
