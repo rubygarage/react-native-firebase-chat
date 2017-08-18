@@ -3,7 +3,7 @@
 import * as types from './actionTypes';
 import firebaseService from '../../services/firebase';
 
-const FIREBASE_REF_MESSAGES = 'Messages'
+const FIREBASE_REF_MESSAGES = firebaseService.database().ref('Messages');
 
 export function sendMessage(message) {
   return (dispatch) => {
@@ -19,8 +19,7 @@ export function sendMessage(message) {
       }
     }
 
-    let firebaseRef = firebaseService.database().ref(FIREBASE_REF_MESSAGES);
-    firebaseRef.push().set(chatMessage, function(error) {
+    FIREBASE_REF_MESSAGES.push().set(chatMessage, function(error) {
       if (error) {
         dispatch(chatMessageError(error.message));
       } else {
@@ -29,9 +28,45 @@ export function sendMessage(message) {
     });
   }
 }
+
 export function updateMessage(text) {
   return (dispatch) => {
     dispatch(chatUpdateMessage(text));
+  }
+}
+
+export function loadMessages() {
+  return (dispatch) => {
+    FIREBASE_REF_MESSAGES.on('value', function(snapshot) {
+      dispatch(loadMessagesSuccess(snapshot.val()));
+    }, function (errorObject) {
+      dispatch(loadMessagesError(errorObject.message));
+    });
+  }
+}
+
+export function subscribeFirebaseChanges() {
+  return (dispatch) => {
+    FIREBASE_REF_MESSAGES.on("child_added", function(snapshot) {
+      var newPost = snapshot.val();
+      console.log('*** ADDED POST ***');
+    });
+
+    FIREBASE_REF_MESSAGES.on("child_changed", function(snapshot) {
+      var newPost = snapshot.val();
+      console.log('*** CHANGED POST ***');
+    });
+
+    FIREBASE_REF_MESSAGES.on("child_removed", function(snapshot) {
+      var newPost = snapshot.val();
+      console.log('*** REMOVED POST ***');
+    });
+  }
+}
+
+export function unsuscribeFirebaseChanges() {
+  return (dispatch) => {
+    FIREBASE_REF_MESSAGES.off();
   }
 }
 
@@ -58,5 +93,19 @@ function chatUpdateMessage(text) {
   return {
     type: types.CHAT_MESSAGE_UPDATE,
     text,
+  }
+}
+
+function loadMessagesSuccess(messages) {
+  return {
+    type: types.CHAT_LOAD_MESSAGES_SUCCESS,
+    messages,
+  }
+}
+
+function loadMessagesError(error) {
+  return {
+    type: types.CHAT_LOAD_MESSAGES_ERROR,
+    error,
   }
 }
