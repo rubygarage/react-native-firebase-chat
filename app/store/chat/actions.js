@@ -4,6 +4,7 @@ import * as types from './actionTypes';
 import firebaseService from '../../services/firebase';
 
 const FIREBASE_REF_MESSAGES = firebaseService.database().ref('Messages');
+const FIREBASE_REF_MESSAGES_LIMIT = 20;
 
 export function sendMessage(message) {
   return (dispatch) => {
@@ -37,7 +38,7 @@ export function updateMessage(text) {
 
 export function loadMessages() {
   return (dispatch) => {
-    FIREBASE_REF_MESSAGES.on('value', function(snapshot) {
+    FIREBASE_REF_MESSAGES.limitToLast(FIREBASE_REF_MESSAGES_LIMIT).on('value', function(snapshot) {
       dispatch(loadMessagesSuccess(snapshot.val()));
     }, function (errorObject) {
       dispatch(loadMessagesError(errorObject.message));
