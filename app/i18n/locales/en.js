@@ -13,4 +13,6 @@ export default {
   error: 'Error',
 
   you: 'You',
+
+  placeholder: 'There are no messages yet',
 };

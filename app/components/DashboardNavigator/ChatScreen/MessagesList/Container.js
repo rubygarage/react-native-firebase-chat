@@ -17,7 +17,7 @@ class MessagesListContainer extends Component {
 
   render() {
     return (
-      <MessageListComponent 
+      <MessageListComponent
         data={this.props.messages}/>
     );
   }
