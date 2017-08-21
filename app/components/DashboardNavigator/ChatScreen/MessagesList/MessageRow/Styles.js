@@ -20,7 +20,7 @@ export default StyleSheet.create({
   userText: {
     color: 'white',
     fontSize: 14,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   messageText: {
     flex: 1,
