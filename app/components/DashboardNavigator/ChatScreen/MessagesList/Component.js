@@ -13,7 +13,9 @@ const ITEM_HEIGHT = 50;
 class MessageListComponent extends Component {
 
     componentDidUpdate() {
-        this.refs.flatList.scrollToIndex({animated: true, index: 0});
+        if (getChatItems(this.props.data).length) {
+            this.refs.flatList.scrollToIndex({animated: true, index: 0});
+        }
     }
 
     render() {
