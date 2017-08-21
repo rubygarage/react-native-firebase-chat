@@ -9,6 +9,7 @@ import { loadMessages } from '../../../../store/chat/actions';
 import MessageListComponent from './Component';
 
 class MessagesListContainer extends Component {
+  
   constructor(props) {
     super(props);
     this.props.loadMessages();
