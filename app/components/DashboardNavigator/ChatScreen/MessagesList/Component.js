@@ -6,7 +6,6 @@ import { List, FlatList, Text } from 'react-native';
 import styles from './Styles';
 
 import MessageRow from './MessageRow';
-import { getChatItems } from '../../../../store/chat/selectors';
 import translations from '../../../../i18n';
 
 const ITEM_HEIGHT = 50;
@@ -14,7 +13,7 @@ const ITEM_HEIGHT = 50;
 class MessageListComponent extends Component {
 
     componentDidUpdate() {
-        if (getChatItems(this.props.data).length) {
+        if (this.props.data.length) {
             this.refs.flatList.scrollToIndex({animated: true, index: 0});
         }
     }
@@ -29,7 +28,7 @@ class MessageListComponent extends Component {
       }
 
     render() {
-        const data = getChatItems(this.props.data).reverse();
+        const data = this.props.data;
         const contentContainerStyle = data.length ? null : styles.flatlistContainerStyle;
         return (
             <FlatList

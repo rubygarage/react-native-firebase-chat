@@ -11,11 +11,11 @@ const MESSAGE_TEXT_MARGIN = 50;
 class MessageRowComponent extends Component {
     
     render() {
-        const currentUser = firebaseService.auth().currentUser.email == this.props.message.user.email;
-        const alignItems = currentUser ? 'flex-end' : 'flex-start';
-        const margin = currentUser ? {marginLeft: MESSAGE_TEXT_MARGIN} : {marginRight: MESSAGE_TEXT_MARGIN}
+        const isCurrentUser = this.props.isCurrentUser;
+        const alignItems = isCurrentUser ? 'flex-end' : 'flex-start';
+        const margin = isCurrentUser ? {marginLeft: MESSAGE_TEXT_MARGIN} : {marginRight: MESSAGE_TEXT_MARGIN}
         const date = this.props.message.time;
-        const username = currentUser ? translations.t('you') : this.props.message.user.email;
+        const username = isCurrentUser ? translations.t('you') : this.props.message.user.email;
         return (
             <View
                 style={styles.container}>
