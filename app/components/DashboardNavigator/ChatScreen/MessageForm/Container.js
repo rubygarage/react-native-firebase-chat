@@ -8,7 +8,7 @@ import { sendMessage, updateMessage } from '../../../../store/chat';
 import MessageForm from './Component';
 
 class MessageFormContainer extends Component {
-
+  
   render() {
     return (
       <MessageForm

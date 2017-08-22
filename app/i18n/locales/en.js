@@ -10,5 +10,9 @@ export default {
   chat: 'Chat',
   message: 'Message',
 
-  error: 'Error'
+  error: 'Error',
+
+  you: 'You',
+
+  placeholder: 'There are no messages yet',
 };

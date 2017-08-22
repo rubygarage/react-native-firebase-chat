@@ -5,7 +5,9 @@ import * as types from './actionTypes';
 const initialState = {
   sending: false,
   sendingError: null,
-  message: ''
+  message: '',
+  messages: {},
+  loadMessagesError: null,
 };
 
 export default function session(state = initialState, action) {
@@ -15,9 +17,13 @@ export default function session(state = initialState, action) {
     case types.CHAT_MESSAGE_ERROR:
       return { ...state, sending: false, sendingError: action.error, };
     case types.CHAT_MESSAGE_SUCCESS:
-      return initialState;
+      return { ...state, sending: false, sendingError: false, message: '', };
     case types.CHAT_MESSAGE_UPDATE:
       return { ...state, sending: false, message: action.text, sendingError: null, }
+    case types.CHAT_LOAD_MESSAGES_SUCCESS:
+      return { ...state, messages: action.messages, loadMessagesError: null, }
+    case types.CHAT_LOAD_MESSAGES_ERROR:
+      return { ...state, messages: null, loadMessagesError: action.error, }
     default:
       return state;
   }
