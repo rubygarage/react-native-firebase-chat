@@ -6,7 +6,7 @@ import { View, Text } from 'react-native';
 import styles from './Styles';
 import translations from '../../../../../i18n';
 
-const MESSAGE_TEXT_MARGIN = 50
+const MESSAGE_TEXT_MARGIN = 50;
 
 class MessageRowComponent extends Component {
     
