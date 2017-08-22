@@ -22,7 +22,7 @@ export function sendMessage(message) {
       }
     }
 
-    FIREBASE_REF_MESSAGES.push().set(chatMessage, function(error) {
+    FIREBASE_REF_MESSAGES.push().set(chatMessage, (error) => {
       if (error) {
         dispatch(chatMessageError(error.message));
       } else {
@@ -40,9 +40,9 @@ export function updateMessage(text) {
 
 export function loadMessages() {
   return (dispatch) => {
-    FIREBASE_REF_MESSAGES.limitToLast(FIREBASE_REF_MESSAGES_LIMIT).on('value', function(snapshot) {
+    FIREBASE_REF_MESSAGES.limitToLast(FIREBASE_REF_MESSAGES_LIMIT).on('value', (snapshot) => {
       dispatch(loadMessagesSuccess(snapshot.val()));
-    }, function (errorObject) {
+    }, (errorObject) => {
       dispatch(loadMessagesError(errorObject.message));
     });
   }
