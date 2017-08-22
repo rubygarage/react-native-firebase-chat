@@ -21,9 +21,9 @@ export default function session(state = initialState, action) {
     case types.CHAT_MESSAGE_UPDATE:
       return { ...state, sending: false, message: action.text, sendingError: null, }
     case types.CHAT_LOAD_MESSAGES_SUCCESS:
-      return { ...state, messages: action.messages, loadMessagesError: null }
+      return { ...state, messages: action.messages, loadMessagesError: null, }
     case types.CHAT_LOAD_MESSAGES_ERROR:
-      return { ...state, messages: null, loadMessagesError: action.error }
+      return { ...state, messages: null, loadMessagesError: action.error, }
     default:
       return state;
   }
