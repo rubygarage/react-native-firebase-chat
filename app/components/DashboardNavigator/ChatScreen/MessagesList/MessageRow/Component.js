@@ -14,6 +14,7 @@ class MessageRowComponent extends Component {
         const currentUser = firebaseService.auth().currentUser.email == this.props.message.user.email;
         const alignItems = currentUser ? 'flex-end' : 'flex-start';
         const margin = currentUser ? {marginLeft: MESSAGE_TEXT_MARGIN} : {marginRight: MESSAGE_TEXT_MARGIN}
+        const date = this.props.message.time;
         const username = currentUser ? translations.t('you') : this.props.message.user.email;
         return (
             <View
@@ -22,7 +23,7 @@ class MessageRowComponent extends Component {
                     style={ [styles.bubbleView, {alignItems: alignItems}, margin] }>
                     <Text
                         style={styles.userText} >
-                        {username}
+                        {date + ' - ' + username}
                     </Text>
                     <Text
                         style={styles.messageText}>
