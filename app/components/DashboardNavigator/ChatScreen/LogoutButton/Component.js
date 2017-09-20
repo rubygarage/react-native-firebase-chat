@@ -1,31 +1,19 @@
-'use strict';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { TouchableOpacity, Image } from 'react-native'
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { TouchableOpacity, Image } from 'react-native';
+import styles from './Styles'
 
-import translations from '../../../../i18n';
+const LogoutButtonComponent = props =>
+  <TouchableOpacity
+    style={styles.container}
+    onPress={props.logout}>
 
-import styles from './Styles';
-
-class LogoutButtonComponent extends Component {
-
-  render() {
-    return (
-      <TouchableOpacity
-        style={styles.container}
-        onPress={this.props.logout}>
-
-        <Image
-          source={require('../../../../images/ic_exit_to_app.png')} />
-
-      </TouchableOpacity>
-    );
-  }
-}
+    <Image source={require('../../../../images/ic_exit_to_app.png')} />
+  </TouchableOpacity>
 
 LogoutButtonComponent.propTypes = {
-  logout: PropTypes.func.isRequired,
-};
+  logout: PropTypes.func.isRequired
+}
 
-export default LogoutButtonComponent;
+export default LogoutButtonComponent

@@ -1,16 +1,14 @@
-'use strict';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Image } from 'react-native'
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Image } from 'react-native';
+import { connect } from 'react-redux'
 
-import { connect } from 'react-redux';
+import { loginUser } from '../../../../store/session'
 
-import { loginUser } from '../../../../store/session';
+import LoginFormComponent from './Component'
 
-import LoginFormComponent from './Component';
-
-import translations from '../../../../i18n';
+import translations from '../../../../i18n'
 
 class LoginFormContainer extends Component {
 
@@ -21,27 +19,23 @@ class LoginFormContainer extends Component {
         source={require('../../../../images/ic_person_outline.png')}
         style={{tintColor: tintColor}}
       />
-    ),
-  };
+    )
+  }
 
   render() {
     return (
       <LoginFormComponent
         login={this.props.login} />
-    );
+    )
   }
 }
 
 LoginFormContainer.propTypes = {
-  screenProps: PropTypes.shape({
-    login: PropTypes.func.isRequired,
-  }),
-};
+  login: PropTypes.func.isRequired
+}
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    login: (email, password) => dispatch(loginUser(email, password)),
-  };
-};
+const mapDispatchToProps = {
+  login: loginUser
+}
 
-export default connect(null, mapDispatchToProps)(LoginFormContainer);
+export default connect(null, mapDispatchToProps)(LoginFormContainer)

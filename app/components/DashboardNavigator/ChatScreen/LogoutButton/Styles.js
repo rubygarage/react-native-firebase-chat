@@ -1,6 +1,4 @@
-'use strict';
-
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   container: {
@@ -8,6 +6,6 @@ export default StyleSheet.create({
     marginRight: 10,
     height: 40,
     alignItems: 'center',
-    justifyContent:'center',
-  },
-});
+    justifyContent:'center'
+  }
+})

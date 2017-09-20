@@ -1,12 +1,9 @@
-'use strict';
+import { StackNavigator } from 'react-navigation'
 
-import React, { Component } from 'react';
-import { StackNavigator } from 'react-navigation';
-
-import ChatScreen from './ChatScreen';
+import ChatScreen from './ChatScreen'
 
 const routeConfig = {
-  Chat: { screen: ChatScreen },
-};
+  Chat: { screen: ChatScreen }
+}
 
-export default StackNavigator(routeConfig);
+export default StackNavigator(routeConfig)

@@ -1,25 +1,20 @@
-'use strict';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { logoutUser } from '../../../../store/session'
 
-import { logoutUser } from '../../../../store/session';
+import LogoutButton from './Component'
 
-import LogoutButton from './Component';
+const LogoutButtonContainer = props =>
+  <LogoutButton logout={props.logout} />
 
-class LogoutButtonContainer extends Component {
-
-  render() {
-    return (
-      <LogoutButton logout={this.props.logout} />
-    );
-  }
+const mapDispatchToProps = {
+  logout: logoutUser
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    logout: () => dispatch(logoutUser()),
-  };
-};
+LogoutButtonContainer.propTypes = {
+  logout: PropTypes.func.isRequired
+}
 
-export default connect(null, mapDispatchToProps)(LogoutButtonContainer);
+export default connect(null, mapDispatchToProps)(LogoutButtonContainer)

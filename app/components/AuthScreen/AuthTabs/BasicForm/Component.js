@@ -1,24 +1,28 @@
-'use strict';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { View, TextInput, TouchableOpacity, Text } from 'react-native'
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import {
-  View,
-  TextInput,
-  Button,
-  TouchableOpacity,
-  Text,
-} from 'react-native';
+import translations from '../../../../i18n'
 
-import translations from '../../../../i18n';
-
-import styles from './Styles';
+import styles from './Styles'
 
 class BasicFormComponent extends Component {
 
   constructor(props) {
     super(props);
     this.state = { email: '', password: '', };
+
+    this.handleEmailChange = (email) => {
+      this.setState({email: email})
+    }
+
+    this.handlePasswordChange = (password) => {
+      this.setState({password: password})
+    }
+
+    this.handleButtonPress = () => {
+      this.props.onButtonPress(this.state.email, this.state.password)
+    }
   }
 
   render() {
@@ -32,7 +36,7 @@ class BasicFormComponent extends Component {
           returnKeyType='next'
           keyboardType='email-address'
           autoCapitalize='none'
-          onChangeText={(text) => this.setState({email: text})}
+          onChangeText={this.handleEmailChange}
           value={this.state.email}
           underlineColorAndroid={'transparent'} />
 
@@ -41,26 +45,26 @@ class BasicFormComponent extends Component {
           placeholder={translations.t('password')}
           secureTextEntry={true}
           returnKeyType='done'
-          onChangeText={(text) => this.setState({password: text})}
+          onChangeText={this.handlePasswordChange}
           value={this.state.password}
           underlineColorAndroid={'transparent'} />
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => this.props.onButtonPress(this.state.email, this.state.password)}>
+          onPress={this.handleButtonPress}>
 
           <Text style={styles.buttonTitle}>{this.props.buttonTitle}</Text>
 
         </TouchableOpacity>
 
       </View>
-    );
+    )
   }
 }
 
 BasicFormComponent.propTypes = {
   buttonTitle: PropTypes.string.isRequired,
   onButtonPress: PropTypes.func.isRequired,
-};
+}
 
-export default BasicFormComponent;
+export default BasicFormComponent

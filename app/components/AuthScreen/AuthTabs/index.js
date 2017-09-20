@@ -1,10 +1,7 @@
-'use strict';
+import { TabNavigator } from 'react-navigation'
 
-import React, { Component } from 'react';
-import { TabNavigator } from 'react-navigation';
-
-import LoginForm from './LoginForm';
-import SignUpForm from './SignUpForm';
+import LoginForm from './LoginForm'
+import SignUpForm from './SignUpForm'
 
 const routeConfigs = {
   Login: {
@@ -13,7 +10,7 @@ const routeConfigs = {
   SignUp: {
     screen: SignUpForm,
   },
-};
+}
 
 const tabBarOptions = {
   tabBarOptions: {
@@ -29,6 +26,6 @@ const tabBarOptions = {
     },
   },
   tabBarPosition: 'bottom'
-};
+}
 
-export default TabNavigator(routeConfigs, tabBarOptions);
+export default TabNavigator(routeConfigs, tabBarOptions)

@@ -1,25 +1,15 @@
-import React, { Component } from 'react';
-import { View, KeyboardAvoidingView } from 'react-native';
+import React from 'react'
+import { View } from 'react-native'
 
-import MessagesList from './MessagesList';
-import MessageForm from './MessageForm';
+import MessagesList from './MessagesList'
+import MessageForm from './MessageForm'
 
-import styles from './Styles';
+import styles from './Styles'
 
-class ChatScreenComponent extends Component {
+const ChatScreenComponent = () =>
+  <View style={styles.container}>
+    <MessagesList />
+    <MessageForm />
+  </View>
 
-  render() {
-    return (
-      <View
-        style={styles.container}>
-
-        <MessagesList />
-        
-        <MessageForm />
-
-      </View>
-    );
-  }
-}
-
-export default ChatScreenComponent;
+export default ChatScreenComponent

@@ -1,31 +1,15 @@
-'use strict';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { View, Alert } from 'react-native'
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import {
-  View,
-  ActivityIndicator,
-  Alert,
-} from 'react-native';
+import AuthTabs from './AuthTabs'
+import LoadingIndicator from './LoadingIndicator'
 
-import AuthTabs from './AuthTabs';
+import translations from '../../i18n'
 
-import translations from '../../i18n';
-
-import styles from './Styles';
+import styles from './Styles'
 
 class AuthScreenComponent extends Component {
-
-  _activityIndicator = () => {
-    if (this.props.loading) {
-      return (
-        <View style={styles.activityContainer}>
-          <ActivityIndicator style={styles.activityIndicator} />
-        </View>
-      );
-    }
-    return null;
-  };
 
   componentDidUpdate(prevProps) {
     if (!prevProps.error && this.props.error) {
@@ -35,21 +19,16 @@ class AuthScreenComponent extends Component {
 
   render() {
     return (
-      <View
-        style={styles.container}>
-
+      <View style={styles.container}>
         <AuthTabs />
-
-        {this._activityIndicator()}
-
-      </View>
-    );
+        {this.props.loading && <LoadingIndicator />}
+      </View>)
   }
 }
 
 AuthScreenComponent.propTypes = {
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
-};
+}
 
-export default AuthScreenComponent;
+export default AuthScreenComponent
