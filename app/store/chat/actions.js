@@ -1,18 +1,16 @@
-'use strict';
+import * as types from './actionTypes'
+import firebaseService from '../../services/firebase'
 
-import * as types from './actionTypes';
-import firebaseService from '../../services/firebase';
+const FIREBASE_REF_MESSAGES = firebaseService.database().ref('Messages')
+const FIREBASE_REF_MESSAGES_LIMIT = 20
 
-const FIREBASE_REF_MESSAGES = firebaseService.database().ref('Messages');
-const FIREBASE_REF_MESSAGES_LIMIT = 20;
-
-export function sendMessage(message) {
+export const sendMessage = message => {
   return (dispatch) => {
-    dispatch(chatMessageLoading());
+    dispatch(chatMessageLoading())
 
-    let currentUser = firebaseService.auth().currentUser;
-    let date = new Date();
-    let dateString = date.toTimeString();
+    let currentUser = firebaseService.auth().currentUser
+    let date = new Date()
+    let dateString = date.toTimeString()
     let chatMessage = {
       text: message,
       time: dateString,
@@ -24,66 +22,54 @@ export function sendMessage(message) {
 
     FIREBASE_REF_MESSAGES.push().set(chatMessage, (error) => {
       if (error) {
-        dispatch(chatMessageError(error.message));
+        dispatch(chatMessageError(error.message))
       } else {
-        dispatch(chatMessageSuccess());
+        dispatch(chatMessageSuccess())
       }
-    });
+    })
   }
 }
 
-export function updateMessage(text) {
+export const updateMessage = text => {
   return (dispatch) => {
-    dispatch(chatUpdateMessage(text));
+    dispatch(chatUpdateMessage(text))
   }
 }
 
-export function loadMessages() {
+export const loadMessages = () => {
   return (dispatch) => {
     FIREBASE_REF_MESSAGES.limitToLast(FIREBASE_REF_MESSAGES_LIMIT).on('value', (snapshot) => {
-      dispatch(loadMessagesSuccess(snapshot.val()));
+      dispatch(loadMessagesSuccess(snapshot.val()))
     }, (errorObject) => {
-      dispatch(loadMessagesError(errorObject.message));
-    });
+      dispatch(loadMessagesError(errorObject.message))
+    })
   }
 }
 
-function chatMessageLoading() {
-  return {
-    type: types.CHAT_MESSAGE_LOADING,
-  }
-}
+const chatMessageLoading = () => ({
+  type: types.CHAT_MESSAGE_LOADING
+})
 
-function chatMessageSuccess() {
-  return {
-    type: types.CHAT_MESSAGE_SUCCESS,
-  }
-}
+const chatMessageSuccess = () => ({
+  type: types.CHAT_MESSAGE_SUCCESS
+})
 
-function chatMessageError(error) {
-  return {
-    type: types.CHAT_MESSAGE_ERROR,
-    error,
-  }
-}
+const chatMessageError = error => ({
+  type: types.CHAT_MESSAGE_ERROR,
+  error
+})
 
-function chatUpdateMessage(text) {
-  return {
-    type: types.CHAT_MESSAGE_UPDATE,
-    text,
-  }
-}
+const chatUpdateMessage = text => ({
+  type: types.CHAT_MESSAGE_UPDATE,
+  text
+})
 
-function loadMessagesSuccess(messages) {
-  return {
-    type: types.CHAT_LOAD_MESSAGES_SUCCESS,
-    messages,
-  }
-}
+const loadMessagesSuccess = messages => ({
+  type: types.CHAT_LOAD_MESSAGES_SUCCESS,
+  messages
+})
 
-function loadMessagesError(error) {
-  return {
-    type: types.CHAT_LOAD_MESSAGES_ERROR,
-    error,
-  }
-}
+const loadMessagesError = error => ({
+  type: types.CHAT_LOAD_MESSAGES_ERROR,
+  error
+})

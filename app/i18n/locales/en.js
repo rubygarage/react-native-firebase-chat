@@ -1,5 +1,3 @@
-'use strict';
-
 export default {
   login: 'Login',
   signup: 'Sign Up',
@@ -15,4 +13,4 @@ export default {
   you: 'You',
 
   placeholder: 'There are no messages yet',
-};
+}

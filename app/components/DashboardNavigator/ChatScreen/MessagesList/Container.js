@@ -32,7 +32,7 @@ const mapDispatchToProps = {
 }
 
 MessagesListContainer.propTypes = {
-  messages: PropTypes.object.isRequired,
+  messages: PropTypes.object,
   error: PropTypes.string,
   loadMessages: PropTypes.func.isRequired
 }

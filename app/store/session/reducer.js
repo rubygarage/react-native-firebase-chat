@@ -1,27 +1,27 @@
-'use strict';
-
-import * as types from './actionTypes';
+import * as types from './actionTypes'
 
 const initialState = {
   restoring: false,
   loading: false,
   user: null,
-  error: null,
-};
+  error: null
+}
 
-export default function session(state = initialState, action) {
+const session = (state = initialState, action) => {
   switch(action.type) {
     case types.SESSION_RESTORING:
-      return { ...state, restoring: true, };
+      return { ...state, restoring: true }
     case types.SESSION_LOADING:
-      return { ...state, restoring: false, loading: true, error: null, };
+      return { ...state, restoring: false, loading: true, error: null }
     case types.SESSION_SUCCESS:
-      return { restoring: false, loading: false, user: action.user, error: null, };
+      return { restoring: false, loading: false, user: action.user, error: null }
     case types.SESSION_ERROR:
-      return { restoring: false, loading: false, user: null, error: action.error, };
+      return { restoring: false, loading: false, user: null, error: action.error }
     case types.SESSION_LOGOUT:
-      return initialState;
+      return initialState
     default:
-      return state;
+      return state
   }
 }
+
+export default session

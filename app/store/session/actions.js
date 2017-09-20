@@ -1,108 +1,96 @@
-'use strict';
+import * as types from './actionTypes'
+import firebaseService from '../../services/firebase'
 
-import * as types from './actionTypes';
-import firebaseService from '../../services/firebase';
-
-export function restoreSession() {
+export const restoreSession = () => {
   return (dispatch) => {
-    dispatch(sessionRestoring());
+    dispatch(sessionRestoring())
 
     let unsubscribe = firebaseService.auth()
-      .onAuthStateChanged(function(user) {
+      .onAuthStateChanged(user => {
         if (user) {
-          dispatch(sessionSuccess(user));
-          unsubscribe();
+          dispatch(sessionSuccess(user))
+          unsubscribe()
         } else {
-          dispatch(sessionLogout());
-          unsubscribe();
+          dispatch(sessionLogout())
+          unsubscribe()
         }
-      });
+      })
   }
 }
 
-export function loginUser(email, password) {
+export const loginUser = (email, password) => {
   return (dispatch) => {
-    dispatch(sessionLoading());
+    dispatch(sessionLoading())
 
     firebaseService.auth()
       .signInWithEmailAndPassword(email, password)
-      .catch(function(error) {
-        dispatch(sessionError(error.message));
-      });
+      .catch(error => {
+        dispatch(sessionError(error.message))
+      })
 
     let unsubscribe = firebaseService.auth()
-      .onAuthStateChanged(function(user) {
+      .onAuthStateChanged(user => {
         if (user) {
-          dispatch(sessionSuccess(user));
-          unsubscribe();
+          dispatch(sessionSuccess(user))
+          unsubscribe()
         }
-      });
+      })
   }
 }
 
-export function signupUser(email, password) {
+export const signupUser = (email, password) => {
   return (dispatch) => {
-    dispatch(sessionLoading());
+    dispatch(sessionLoading())
 
     firebaseService.auth()
       .createUserWithEmailAndPassword(email, password)
-      .catch(function(error) {
+      .catch(error => {
         dispatch(sessionError(error.message));
-      });
+      })
 
     let unsubscribe = firebaseService.auth()
-      .onAuthStateChanged(function(user) {
+      .onAuthStateChanged(user => {
         if (user) {
-          dispatch(sessionSuccess(user));
-          unsubscribe();
+          dispatch(sessionSuccess(user))
+          unsubscribe()
         }
-      });
+      })
   }
 }
 
-export function logoutUser() {
+export const logoutUser = () => {
   return (dispatch) => {
-    dispatch(sessionLoading());
+    dispatch(sessionLoading())
 
     firebaseService.auth()
       .signOut()
-      .then(function() {
-        dispatch(sessionLogout());
+      .then(() => {
+        dispatch(sessionLogout())
       })
-      .catch(function(error) {
-        dispatch(sessionError(error.message));
-      });
+      .catch(error => {
+        dispatch(sessionError(error.message))
+      })
   }
 }
 
-function sessionRestoring() {
-  return {
-    type: types.SESSION_RESTORING,
-  }
-}
+const sessionRestoring = () => ({
+  type: types.SESSION_RESTORING
+})
 
-function sessionLoading() {
-  return {
-    type: types.SESSION_LOADING,
-  }
-}
+const sessionLoading = () => ({
+  type: types.SESSION_LOADING
+})
 
-function sessionSuccess(user) {
-  return {
-    type: types.SESSION_SUCCESS,
-    user,
-  }
-}
+const sessionSuccess = user => ({
+  type: types.SESSION_SUCCESS,
+  user
+})
 
-function sessionError(error) {
-  return {
-    type: types.SESSION_ERROR,
-    error,
-  }
-}
+const sessionError = error => ({
+  type: types.SESSION_ERROR,
+  error
+})
 
-function sessionLogout() {
-  return {
-    type: types.SESSION_LOGOUT,
-  }
-}
+const sessionLogout = () => ({
+  type: types.SESSION_LOGOUT
+})

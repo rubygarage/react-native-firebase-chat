@@ -1,7 +1,7 @@
-import * as firebase from 'firebase';
-import { firebaseConfig } from '../configs/firebase';
+import * as firebase from 'firebase'
+import { firebaseConfig } from '../configs/firebase'
 
-let instance = null;
+let instance = null
 
 class FirebaseService {
   constructor() {
@@ -9,7 +9,7 @@ class FirebaseService {
       this.app = firebase.initializeApp(firebaseConfig);
       instance = this;
     }
-    return instance;
+    return instance
   }
 }
 
