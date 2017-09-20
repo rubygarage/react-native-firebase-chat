@@ -1,25 +1,21 @@
-'use strict';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { ActivityIndicator } from 'react-native'
 
-import { ActivityIndicator } from 'react-native';
+import DashboardNavigator from '../DashboardNavigator'
+import AuthScreen from '../AuthScreen'
 
-import DashboardNavigator from '../DashboardNavigator';
-import AuthScreen from '../AuthScreen';
+import styles from './Styles'
 
-import styles from './Styles';
-
-class ChatAppComponent extends Component {
-  render() {
-    if (this.props.restoring) {
-      return <ActivityIndicator style={styles.activityIndicator} />;
+const ChatAppComponent = props => {
+  if (props.restoring) {
+    return <ActivityIndicator style={styles.activityIndicator} />
+  } else {
+    if (props.logged) {
+      return <DashboardNavigator />
     } else {
-      if (this.props.logged) {
-        return <DashboardNavigator />;
-      } else {
-        return <AuthScreen />;
-      }
+      return <AuthScreen />
     }
   }
 }
@@ -27,6 +23,6 @@ class ChatAppComponent extends Component {
 ChatAppComponent.propTypes = {
   restoring: PropTypes.bool.isRequired,
   logged: PropTypes.bool.isRequired,
-};
+}
 
-export default ChatAppComponent;
+export default ChatAppComponent

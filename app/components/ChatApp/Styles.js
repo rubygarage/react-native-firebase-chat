@@ -1,6 +1,4 @@
-'use strict';
-
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   activityIndicator: {
@@ -8,4 +6,4 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-});
+})
