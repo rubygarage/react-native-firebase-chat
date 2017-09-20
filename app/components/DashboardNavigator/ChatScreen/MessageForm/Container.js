@@ -1,37 +1,36 @@
-'use strict';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { sendMessage, updateMessage } from '../../../../store/chat'
 
-import { sendMessage, updateMessage } from '../../../../store/chat';
+import MessageForm from './Component'
 
-import MessageForm from './Component';
+const MessageFormContainer = props =>
+  <MessageForm
+    sending={props.sending}
+    sendMessage={props.sendMessage}
+    updateMessage={props.updateMessage}
+    message={props.message}
+    sendingError={props.sendingError} />
 
-class MessageFormContainer extends Component {
-  
-  render() {
-    return (
-      <MessageForm
-        sending={this.props.sending}
-        sendMessage={this.props.sendMessage}
-        updateMessage={this.props.updateMessage}
-        message={this.props.message}
-        sendingError={this.props.sendingError} />
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    sending: state.chat.sending,
-    sendingError: state.chat.sendingError,
-    message: state.chat.message,
-  };
-};
+const mapStateToProps = state => ({
+  sending: state.chat.sending,
+  sendingError: state.chat.sendingError,
+  message: state.chat.message
+})
 
 const mapDispatchToProps = {
   sendMessage,
-  updateMessage,
-};
+  updateMessage
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessageFormContainer);
+MessageFormContainer.propTypes = {
+  sending: PropTypes.bool.isRequired,
+  sendMessage: PropTypes.func.isRequired,
+  updateMessage: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
+  sendingError: PropTypes.string
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageFormContainer)

@@ -1,6 +1,4 @@
-'use strict';
-
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   container: {
@@ -9,7 +7,7 @@ export default StyleSheet.create({
     minWidth: '100%',
     backgroundColor: '#eeeeee',
     borderTopColor: '#cccccc',
-    borderTopWidth: 1,
+    borderTopWidth: 1
   },
   textInput: {
     flex: 1,
@@ -17,7 +15,7 @@ export default StyleSheet.create({
     height: 40,
     margin: 10,
     borderRadius: 5,
-    padding: 3,
+    padding: 3
   },
   button: {
     flexShrink: 0,
@@ -27,6 +25,6 @@ export default StyleSheet.create({
     marginRight: 10,
     marginBottom: 10,
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent:'center'
   }
-});
+})
