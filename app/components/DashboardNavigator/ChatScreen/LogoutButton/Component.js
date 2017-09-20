@@ -1,8 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { TouchableOpacity, Image } from 'react-native'
-
-import translations from '../../../../i18n'
 
 import styles from './Styles'
 

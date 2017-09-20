@@ -10,13 +10,15 @@ import SignUpFormComponent from './Component'
 
 import translations from '../../../../i18n'
 
+const personImage = require('../../../../images/ic_person_add.png')
+
 class SignUpFormContainer extends Component {
 
   static navigationOptions = {
     tabBarLabel: translations.t('signup'),
     tabBarIcon: ({ tintColor }) => (
       <Image
-        source={require('../../../../images/ic_person_add.png')}
+        source={personImage}
         style={{tintColor: tintColor}}
       />
     )
@@ -31,9 +33,7 @@ class SignUpFormContainer extends Component {
 }
 
 SignUpFormContainer.propTypes = {
-  screenProps: PropTypes.shape({
-    signup: PropTypes.func.isRequired,
-  })
+  signup: PropTypes.func.isRequired
 }
 
 const mapDispatchToProps = {

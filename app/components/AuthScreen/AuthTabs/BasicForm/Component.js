@@ -1,12 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  View,
-  TextInput,
-  Button,
-  TouchableOpacity,
-  Text,
-} from 'react-native'
+import { View, TextInput, TouchableOpacity, Text } from 'react-native'
 
 import translations from '../../../../i18n'
 

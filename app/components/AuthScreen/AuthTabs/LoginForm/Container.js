@@ -31,9 +31,7 @@ class LoginFormContainer extends Component {
 }
 
 LoginFormContainer.propTypes = {
-  screenProps: PropTypes.shape({
-    login: PropTypes.func.isRequired,
-  })
+  login: PropTypes.func.isRequired
 }
 
 const mapDispatchToProps = {

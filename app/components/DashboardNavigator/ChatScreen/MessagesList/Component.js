@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { List, FlatList, Text } from 'react-native'
+import { FlatList, Text } from 'react-native'
 import PropTypes from 'prop-types'
 
 import MessageRow from './MessageRow'
@@ -35,7 +35,7 @@ class MessageListComponent extends Component {
 
   componentDidUpdate() {
     if (this.props.data.length) {
-        this.refs.flatList.scrollToIndex({animated: true, index: 0});
+        this.flatList.scrollToIndex({animated: true, index: 0});
     }
   }
 
@@ -44,7 +44,7 @@ class MessageListComponent extends Component {
     const contentContainerStyle = data.length ? null : styles.flatlistContainerStyle
     return (
       <FlatList
-        ref='flatList'
+        ref={(c) => { this.flatList = c }}
         style={styles.container}
         contentContainerStyle={contentContainerStyle}
         data={data}

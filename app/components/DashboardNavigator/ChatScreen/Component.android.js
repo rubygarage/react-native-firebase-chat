@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { View, KeyboardAvoidingView } from 'react-native'
+import React from 'react'
+import { View } from 'react-native'
 
 import MessagesList from './MessagesList'
 import MessageForm from './MessageForm'
