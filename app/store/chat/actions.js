@@ -9,11 +9,10 @@ export const sendMessage = message => {
     dispatch(chatMessageLoading())
 
     let currentUser = firebaseService.auth().currentUser
-    let date = new Date()
-    let dateString = date.toTimeString()
+    let createdAt = new Date().getTime()
     let chatMessage = {
       text: message,
-      time: dateString,
+      createdAt: createdAt,
       user: {
         id: currentUser.uid,
         email: currentUser.email
