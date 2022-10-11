@@ -10,7 +10,7 @@
 	"dependencies": {
 		"firebase": "^5.7.2",
 		"react": "^16.6.3",
-		"react-native": "^0.57.8",
+		"react-native": "^0.70.2",
 		"react-native-i18n": "^2.0.12",
 		"react-navigation": "^1.5.12",
 		"react-redux": "^5.0.7",
